@@ -2,6 +2,8 @@ var character = document.getElementById("character");
 var block = document.getElementById("block");
 var counter=0;
 var back = new Audio('./music/back.wav');
+var playing = false;
+
 function jump(){
     if(character.classList == "animate"){return}
     var jumping = new Audio('./music/jump.wav');
@@ -16,6 +18,7 @@ var checkDead = setInterval(function() {
     let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
     let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
     if(blockLeft<100 && blockLeft>0 && characterTop>=420){
+        playing = false;
         back.pause();
         var fail = new Audio('./music/fail.wav');
         fail.play();
@@ -23,12 +26,12 @@ var checkDead = setInterval(function() {
         document.getElementById("cont").innerHTML = Math.floor(counter/100);
         document.getElementById("anim").style.backgroundImage = "url('./img/pause.JPG')";
         viewPopup();
-        clearInterval(checkDead);
-        
+        checkDead.pause();
         return;
         
     }else{
         if(!document.getElementById("popup-1").classList.contains("active")){
+            playing = true;
             back.play();
             counter++;
             document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
@@ -39,42 +42,25 @@ var checkDead = setInterval(function() {
 
 
 function viewPopup(){
+    playing = false;
     document.getElementById("popup-1").classList.add("active");
 }
 
 function hidePopup(){
+    playing = true;
     document.getElementById("popup-1").classList.remove("active");
 }
 
 function start(){
+    if(playing == false){
+        playing = true;
+        counter=0;
+    }
     back.play();
     hidePopup();
     document.getElementById("anim").style.backgroundImage = "url('./img/back3.gif')";
-    counter=0;
     block.style.animation = "block 5s infinite linear";
-    checkDead = setInterval(function() {
-        let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-        let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-        if(blockLeft<100 && blockLeft>0 && characterTop>=420){
-            back.pause();
-            var fail = new Audio('./music/fail.wav');
-            fail.play();
-            block.style.animation = "none";
-            document.getElementById("cont").innerHTML = Math.floor(counter/100);
-            document.getElementById("anim").style.backgroundImage = "url('./img/pause.JPG')";
-            viewPopup();
-            clearInterval(checkDead);
-            return;
-            
-        }else{
-            if(!document.getElementById("popup-1").classList.contains("active")){
-                back.play();
-                counter++;
-                document.getElementById("scoreSpan").innerHTML = Math.floor(counter/100);
-            }
-            
-        }
-    }, 10);
+    checkDead.resume();
 }
 
 document.body.onkeyup = function(e){
