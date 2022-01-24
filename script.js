@@ -23,7 +23,8 @@ var checkDead = setInterval(function() {
         var fail = new Audio('./music/fail.wav');
         fail.play();
         block.style.animation = "none";
-        document.getElementById("cont").innerHTML = Math.floor(counter/100);
+        document.getElementById("gameover").innerHTML = "GAME OVER";
+        document.getElementById("cont").innerHTML = "Score : " +  Math.floor(counter/100);
         document.getElementById("anim").style.backgroundImage = "url('./img/pause.JPG')";
         viewPopup();
         checkDead.pause();
@@ -71,7 +72,7 @@ document.body.onkeyup = function(e){
 
 window.onload = function() {
     document.getElementById("scoreSpan").innerHTML = 0;
-    document.getElementById("cont").innerHTML = 0;
+    document.getElementById("cont").innerHTML = "Welcome";
     document.getElementById("popup-1").classList.add("active");
     document.getElementById("anim").style.backgroundImage = "url('./img/pause.JPG')";
     var block = document.getElementById("block");
