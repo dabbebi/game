@@ -50,7 +50,7 @@
     width: 20px;
     height: 20px;*/
     position: relative;
-    top: calc(100% - 145px);
+    top: calc(100% - 155px);
     left: 100%;
     animation: block 5s infinite linear;
 }
