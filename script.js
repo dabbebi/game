@@ -72,6 +72,7 @@ document.body.onkeyup = function(e){
 } 
 
 window.onload = function() {
+    document.getElementById("scoreSpan").innerHTML = 0;
     document.getElementById("cont").innerHTML = 0;
     document.getElementById("popup-1").classList.add("active");
     document.getElementById("anim").style.backgroundImage = "url('./img/pause.JPG')";
