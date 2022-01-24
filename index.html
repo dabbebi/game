@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Game</title>
+</head>
+<body style="background-image: url('./img/back.png');">
+    <div class="score">
+        <p>Score: <span id="scoreSpan"></span></p>
+    </div>
+    <div id="anim" class="game">
+        <div id="character" onclick="jump()">
+            <img src="./img/moto.png" alt="" style="width: 130px; height: auto;">
+        </div>
+        <div id="block">
+            <img src="./img/bombe.png" alt="" style="width: 22px; height: auto;">
+        </div>
+    </div>
+    <div class="popup" id="popup-1">
+        <div class="overlay"></div>
+        <div class="content" style="background-color: rgb(135, 0, 189); max-width: 300px; border-radius: 10px;">
+            <div style="color: white; font-size: 24px;">Score : <span id="cont"></span></div><br>
+            <div>
+                <button class="start"  onclick="start()">Play</button>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>

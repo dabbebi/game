@@ -1,0 +1,137 @@
+*{
+    padding: 0;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.score{
+    font-family: Arial;
+    font-size: 16px;
+    background-color: rgb(96, 0, 141);
+    color: azure;
+    border: 2px solid rgb(96, 0, 141);
+    border-radius: 10px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+    width: 960px;
+}
+
+.game{
+    padding: 5px;
+    width: 960px;
+    height: 540px;
+    border: 3px solid rgb(96, 0, 141);
+    border-radius: 10px;
+    margin: auto;
+    background-image: url("./img/back3.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#character{
+    position: relative;
+    top: calc(100% - 112px);
+}
+.animate{
+    animation: jump 1s linear;
+}
+@keyframes jump{
+    0%{top: calc(100% - 112px);}
+    30%{top: calc(100% - 160px);}
+    50%{top: calc(100% - 170px);}
+    70%{top: calc(100% - 160px);}
+    100%{top: calc(100% - 112px);}
+}
+
+#block{
+    /*background-color: blue;
+    width: 20px;
+    height: 20px;*/
+    position: relative;
+    top: calc(100% - 145px);
+    left: 100%;
+    animation: block 5s infinite linear;
+}
+@keyframes block{
+    0%{left: 100%}
+    100%{left: -0px}
+}
+p{
+    text-align: center;
+}
+
+.start{
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 24px;
+    padding-right: 24px;
+    color: #fff;
+    background-color: rgb(68, 1, 107);
+    font-size: 22px;
+    border: 0px;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.popup {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10000;
+    display: block;
+}
+
+.popup .overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 14;
+    display: none;
+}
+
+.popup .content {
+    position: fixed;
+    margin-top: 80px;
+    top: calc(50% - 80px);
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: RGB(238, 238, 238);
+    width: 80%;
+    /*height: auto;*/
+    z-index: 15;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+    border-radius: 4px;
+}
+
+.popup .close-btn {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: #222;
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.popup.active .overlay {
+    display: block;
+}
+
+.popup.active .content {
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
