@@ -6,18 +6,21 @@ var playing = false;
 
 function jump(){
     if(character.classList == "animate"){return}
+    document.getElementById("man").src = "./img/manjump.png";
     var jumping = new Audio('./music/jump.wav');
     jumping.play();
     character.classList.add("animate");
     setTimeout(function(){
         character.classList.remove("animate");
+        document.getElementById("man").src = "./img/man.gif";
     },1000);
+    
 }
 
 var checkDead = setInterval(function() {
     let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
     let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    if(blockLeft<100 && blockLeft>0 && characterTop>=420){
+    if(blockLeft<70 && blockLeft>0 && characterTop>=380){
         playing = false;
         back.pause();
         var fail = new Audio('./music/fail.wav');

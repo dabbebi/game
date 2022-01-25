@@ -32,17 +32,17 @@
 }
 #character{
     position: relative;
-    top: calc(100% - 112px);
+    top: calc(100% - 151px);
 }
 .animate{
     animation: jump 1s linear;
 }
 @keyframes jump{
-    0%{top: calc(100% - 112px);}
-    30%{top: calc(100% - 160px);}
-    50%{top: calc(100% - 170px);}
-    70%{top: calc(100% - 160px);}
-    100%{top: calc(100% - 112px);}
+    0%{top: calc(100% - 151px);}
+    30%{top: calc(100% - 190px);}
+    50%{top: calc(100% - 210px);}
+    70%{top: calc(100% - 190px);}
+    100%{top: calc(100% - 151px);}
 }
 
 #block{
@@ -50,7 +50,7 @@
     width: 20px;
     height: 20px;*/
     position: relative;
-    top: calc(100% - 155px);
+    top: calc(100% - 190px);
     left: 100%;
     animation: block 5s infinite linear;
 }
