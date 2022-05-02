@@ -4,6 +4,10 @@
     overflow-x: hidden;
 }
 
+body {
+    height: 100vh;
+    background-size: 100vh;
+}
 .score{
     font-family: Arial;
     font-size: 16px;
@@ -16,33 +20,33 @@
     margin-left: auto;
     margin-right: auto;
     padding: 5px;
-    width: 960px;
+    width: calc(100vh * 1.40);
 }
 
 .game{
-    padding: 5px;
-    width: 960px;
-    height: 540px;
+    padding: 0px;
+    width: calc(100vh * 1.40);
+    height: calc(100vh - 80px);
     border: 3px solid rgb(96, 0, 141);
     border-radius: 10px;
     margin: auto;
     background-image: url("./img/back3.gif");
-    background-size: cover;
+    background-size: auto calc(100vh - 80px);
     background-repeat: no-repeat;
 }
 #character{
     position: relative;
-    top: calc(100% - 151px);
+    top: calc(100vh - 175px);
 }
 .animate{
     animation: jump 1s linear;
 }
 @keyframes jump{
-    0%{top: calc(100% - 151px);}
-    30%{top: calc(100% - 190px);}
-    50%{top: calc(100% - 210px);}
-    70%{top: calc(100% - 190px);}
-    100%{top: calc(100% - 151px);}
+    0%{top: calc(100vh - 180px);}
+    30%{top: calc(100vh - 210px);}
+    50%{top: calc(100vh - 220px);}
+    70%{top: calc(100vh - 210px);}
+    100%{top: calc(100vh - 180px);}
 }
 
 #block{
@@ -50,7 +54,7 @@
     width: 20px;
     height: 20px;*/
     position: relative;
-    top: calc(100% - 190px);
+    top: calc(100vh - 200px);
     left: 100%;
     animation: block 5s infinite linear;
 }

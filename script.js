@@ -20,7 +20,8 @@ function jump(){
 var checkDead = setInterval(function() {
     let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
     let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
-    if(blockLeft<70 && blockLeft>0 && characterTop>=380){
+    console.log(characterTop);
+    if(blockLeft<55 && blockLeft>0 && characterTop>=210){
         playing = false;
         back.pause();
         var fail = new Audio('./music/fail.wav');
