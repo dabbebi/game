@@ -21,7 +21,7 @@ var checkDead = setInterval(function() {
     let characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
     let blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
     console.log(characterTop);
-    if(blockLeft<55 && blockLeft>0 && characterTop>=210){
+    if(blockLeft<55 && blockLeft>0 && characterTop>=750){
         playing = false;
         back.pause();
         var fail = new Audio('./music/fail.wav');
