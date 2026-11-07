@@ -2,6 +2,7 @@ var character = document.getElementById("character");
 var block = document.getElementById("block");
 var counter = 0;
 var back = new Audio('./music/back.wav');
+back.loop = true;
 var playing = false;
 var gameLoop = null;
 
