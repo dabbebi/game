@@ -5,36 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
-    <title>Game</title>
+    <title>Bomb Dash</title>
 </head>
-<body style="background-image: url('./img/back.png');">
-    <div class="score">
-        <p>Score: <span id="scoreSpan"></span></p>
-    </div>
-    <div id="anim" class="game">
-        <div id="character" onclick="jump()">
-            <img id="man" src="./img/man.gif" alt="" style="width: 60px; height: auto;">
-        </div>
-        <div id="block">
-            <img src="./img/b1.png" alt="" style="width: 15px; height: auto;">
-        </div>
-    </div>
+<body>
+    <main class="game-shell">
+        <header class="topbar">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">B</span>
+                <div>
+                    <p class="eyebrow">ARCADE RUNNER</p>
+                    <h1>Bomb Dash</h1>
+                </div>
+            </div>
+            <div class="score" aria-live="polite">
+                <span class="score-label">SCORE</span>
+                <span id="scoreSpan">0</span>
+            </div>
+        </header>
+
+        <section id="anim" class="game" aria-label="Game area">
+            <div class="stage-label"><span></span> ARCADE MODE</div>
+            <div id="character" onclick="jump()">
+                <img id="man" src="./img/man.gif" alt="Runner" style="width: 60px; height: auto;">
+            </div>
+            <div id="block">
+                <img src="./img/b1.png" alt="Bomb" style="width: 15px; height: auto;">
+            </div>
+            <p class="stage-hint">JUMP OVER THE BOMBS</p>
+        </section>
+
+        <footer class="footer">
+            <span>Press <kbd>SPACE</kbd> or tap the runner to jump</span>
+            <span class="credit">Designed by Elaid DABBEBI <span aria-hidden="true">&copy;</span> 2022</span>
+        </footer>
+    </main>
+
     <div class="popup" id="popup-1">
         <div class="overlay"></div>
-        <div class="content" style="background-color: rgb(135, 0, 189); max-width: 300px; border-radius: 10px;">
-            <div style="color: white; font-size: 24px;"><span id="gameover"></span></div><br>
-            <div style="color: white; font-size: 24px;"><span id="cont"></span></div><br>
-            <div>
-                <button class="start"  onclick="start()">Play</button>
-            </div>
-            <br>
-            <div style="text-align: center; color: white; font-size: 16px; ">
-                press [Space] to jump
-            </div>
+        <div class="content">
+            <div class="modal-icon" aria-hidden="true">B</div>
+            <p class="modal-eyebrow">BOMB DASH</p>
+            <h2 id="gameover"></h2>
+            <p id="cont"></p>
+            <button class="start" onclick="start()">Play</button>
+            <p class="modal-hint">Press <kbd>SPACE</kbd> to jump</p>
         </div>
     </div>
-
-    <div style="text-align: center; color: white;font-family: Arial;">Coded & designed by Elaid DABBEBI &#169; 2022</div>
     <script src="./script.js"></script>
 </body>
 </html>
