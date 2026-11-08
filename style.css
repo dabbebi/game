@@ -178,6 +178,12 @@ button {
 #character img,
 #block img {
     display: block;
+    width: 15px;
+    height: auto;
+}
+
+#block.tank img {
+    width: 55px;
 }
 
 .animate {

@@ -1,5 +1,6 @@
 var character = document.getElementById("character");
 var block = document.getElementById("block");
+var obstacleImage = document.getElementById("obstacle-image");
 var counter = 0;
 var back = new Audio('./music/back.wav');
 var jumping = new Audio('./music/jump.wav');
@@ -34,6 +35,19 @@ function checkCollision() {
         characterBounds.bottom > blockBounds.top;
 }
 
+function updateObstacle(score) {
+    var useTank = score > 20;
+    var tankSrc = "./img/tank.gif";
+    var bombSrc = "./img/b1.png";
+    var obstacleSrc = useTank ? tankSrc : bombSrc;
+
+    if (obstacleImage.getAttribute("src") === obstacleSrc) { return; }
+
+    obstacleImage.src = obstacleSrc;
+    obstacleImage.alt = useTank ? "Tank" : "Bomb";
+    block.classList.toggle("tank", useTank);
+}
+
 function endGame() {
     playing = false;
     back.pause();
@@ -60,7 +74,9 @@ function startGameLoop() {
         }
 
         counter++;
-        document.getElementById("scoreSpan").innerHTML = Math.floor(counter / 100);
+        var score = Math.floor(counter / 100);
+        document.getElementById("scoreSpan").innerHTML = score;
+        updateObstacle(score);
     }, 10);
 }
 
@@ -79,6 +95,7 @@ function start() {
     if (playing == false) {
         playing = true;
         counter = 0;
+        updateObstacle(0);
     }
     back.play();
     hidePopup();
@@ -132,6 +149,7 @@ function preloadAssets() {
         preloadImage("./img/man.gif"),
         preloadImage("./img/manjump.png"),
         preloadImage("./img/pause.JPG"),
+        preloadImage("./img/tank.gif"),
         preloadAudio(back),
         preloadAudio(jumping),
         preloadAudio(fail)
