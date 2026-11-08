@@ -261,6 +261,11 @@ kbd {
     z-index: 10000;
     inset: 0;
     display: block;
+    pointer-events: none;
+}
+
+.popup.active {
+    pointer-events: auto;
 }
 
 .popup .overlay {
