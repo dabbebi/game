@@ -2,14 +2,18 @@ var character = document.getElementById("character");
 var block = document.getElementById("block");
 var counter = 0;
 var back = new Audio('./music/back.wav');
+var jumping = new Audio('./music/jump.wav');
+var fail = new Audio('./music/fail.wav');
 back.loop = true;
 var playing = false;
 var gameLoop = null;
+var assetsReady = false;
 
 function jump() {
+    if (!assetsReady) { return; }
     if (character.classList.contains("animate")) { return; }
     document.getElementById("man").src = "./img/manjump.png";
-    var jumping = new Audio('./music/jump.wav');
+    jumping.currentTime = 0;
     jumping.play();
     character.classList.add("animate");
     setTimeout(function () {
@@ -33,7 +37,7 @@ function checkCollision() {
 function endGame() {
     playing = false;
     back.pause();
-    var fail = new Audio('./music/fail.wav');
+    fail.currentTime = 0;
     fail.play();
     block.style.animation = "none";
     document.getElementById("gameover").innerHTML = "GAME OVER";
@@ -71,6 +75,7 @@ function hidePopup() {
 }
 
 function start() {
+    if (!assetsReady) { return; }
     if (playing == false) {
         playing = true;
         counter = 0;
@@ -89,10 +94,71 @@ document.body.onkeyup = function (e) {
     }
 };
 
-window.onload = function () {
+function preloadImage(src) {
+    return new Promise(function (resolve, reject) {
+        var image = new Image();
+        image.onload = resolve;
+        image.onerror = function () {
+            reject(new Error("Unable to load " + src));
+        };
+        image.src = src;
+    });
+}
+
+function preloadAudio(audio) {
+    audio.preload = "auto";
+    return new Promise(function (resolve, reject) {
+        if (audio.readyState >= HTMLMediaElement.HAVE_ENOUGH_DATA) {
+            resolve();
+            return;
+        }
+
+        audio.addEventListener("canplaythrough", resolve, { once: true });
+        audio.addEventListener("error", function () {
+            reject(new Error("Unable to load " + audio.src));
+        }, { once: true });
+        audio.load();
+    });
+}
+
+function preloadAssets() {
+    var loader = document.getElementById("loader");
+    var message = document.getElementById("loading-message");
+    var progress = document.getElementById("loading-progress");
+    var assets = [
+        preloadImage("./img/back.png"),
+        preloadImage("./img/back3.gif"),
+        preloadImage("./img/b1.png"),
+        preloadImage("./img/man.gif"),
+        preloadImage("./img/manjump.png"),
+        preloadImage("./img/pause.JPG"),
+        preloadAudio(back),
+        preloadAudio(jumping),
+        preloadAudio(fail)
+    ];
+    var loaded = 0;
+
+    Promise.all(assets.map(function (asset) {
+        return asset.then(function () {
+            loaded++;
+            progress.value = Math.round(loaded / assets.length * 100);
+        });
+    })).then(function () {
+        assetsReady = true;
+        loader.hidden = true;
+        document.getElementById("popup-1").classList.add("active");
+    }).catch(function () {
+        message.textContent = "Some game assets could not be loaded. Check your connection and reload the page.";
+        progress.hidden = true;
+    });
+}
+
+function initializeGame() {
     document.getElementById("scoreSpan").innerHTML = 0;
     document.getElementById("cont").innerHTML = "Welcome";
-    document.getElementById("popup-1").classList.add("active");
     document.getElementById("anim").style.backgroundImage = "url('./img/pause.JPG')";
     block.style.animation = "none";
-};
+    preloadAssets();
+}
+
+initializeGame();
